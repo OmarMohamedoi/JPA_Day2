@@ -15,9 +15,21 @@ public class Book {
     @JoinColumn(name = "author_id")
     private Author author;
 
+    @ManyToOne
+    @JoinColumn(name = "publisher_id")
+    private Publisher publisher;
+
 
     public void setAuthor(Author author){
         this.author=author;
+    }
+
+    public Publisher getPublisher() {
+        return publisher;
+    }
+
+    public void setPublisher(Publisher publisher) {
+        this.publisher = publisher;
     }
 
     @Override
