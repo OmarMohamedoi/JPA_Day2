@@ -5,6 +5,8 @@
     <persistence-unit name="empPU" transaction-type="RESOURCE_LOCAL">
         <class>org.example.entity.Author</class>
         <class>org.example.entity.Book</class>
+        <class>org.example.entity.Category</class>
+        <class>org.example.entity.Publisher</class>
         <properties>
             <!-- Database connection strings -->
             <property name="jakarta.persistence.jdbc.url" value="jdbc:h2:mem:empdb"/>

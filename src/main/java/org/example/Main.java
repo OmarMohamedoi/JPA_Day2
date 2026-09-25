@@ -4,8 +4,11 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 import org.example.entity.Author;
 import org.example.entity.Book;
+import org.example.entity.Category;
+import org.example.entity.Publisher;
 import org.example.util.JPA;
 
+import java.util.HashSet;
 import java.util.List;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
@@ -57,5 +60,29 @@ public class Main {
 
             }
 
+
+
     }
+        //TRYING THE WHOLE FLOW
+        try(EntityManager entityManager = JPA.getEntityManagerFactory().createEntityManager()){
+            EntityTransaction transaction = entityManager.getTransaction();
+            transaction.begin();
+            Author author = new Author();
+            author.setName("Ali");
+            Book book1 = new Book();
+            book1.setTitle("Tales of pirates");
+            author.addBook(book1);
+            Category category = new Category();
+            category.setName("Action");
+            HashSet<Book> books = new HashSet<>();
+            books.add(book1);
+            category.setBooks(books);
+            Publisher waltDisney = new Publisher();
+            waltDisney.setName("WaltDisney");
+            book1.setPublisher(waltDisney);
+            entityManager.persist(author);
+            entityManager.persist(waltDisney);
+            transaction.commit();
+
+        }
 }}
